@@ -8,11 +8,11 @@ Game::Game(){
 Game::~Game(){
 
     delete this->mywin;
+    delete this->player;
 }
 
 void Game::initTexture(){
     this->mywin_texture.loadFromFile("images/background.png");
-    this->mywin_texture.setSmooth(true);
 }
 
 void Game::initSprite(){
@@ -21,16 +21,22 @@ void Game::initSprite(){
 }
 
 void Game::initWindow(){
-
-    this->mywin = new sf::RenderWindow(sf::VideoMode(VAR::WIDTH, VAR::HEIGHT),"DODGE POLICE", sf::Style::Close | sf::Style::Titlebar);
+    this->mywin = new sf::RenderWindow(sf::VideoMode(VAR::WIDTH, VAR::HEIGHT),"DODGE POLICE",sf::Style::Close|sf::Style::Default);
     this->mywin->setFramerateLimit(VAR::FPS);
     this->initTexture();
     this->initSprite();
+    this->initPlayer();
     this->mywin->setVerticalSyncEnabled(false);
+}
+
+void Game::initPlayer(){
+    this->player = new MyCar();
 }
 void Game::update(){
     this->mywin->clear();
+    this->render();
     this->mywin->draw(this->mywin_sprite);
+    this->mywin->draw(this->player->get_player_sprite());
     this->mywin->display();
 
 }
@@ -45,8 +51,9 @@ void Game::render(){
 }
 
 void Game::run(){
+    
     while(this->mywin->isOpen()){
-        this->render();
+        
         this->update();
     }
 }
