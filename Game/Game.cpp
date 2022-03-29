@@ -37,6 +37,9 @@ void Game::update(){
     this->events();
     this->mywin->draw(this->mywin_sprite);
     this->mywin->draw(this->player->get_player_sprite());
+    this->mywin->draw(this->player->get_score());
+    this->mywin->draw(this->player->get_level());
+    this->mywin->draw(this->player->get_attemp());
     this->mywin->display();
 }
 
