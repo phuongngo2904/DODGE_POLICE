@@ -56,7 +56,7 @@ void Game::events(){
             
             this->player->move_dir(-1.f,0.f);
         }
-        if((e.Event::KeyPressed && e.Event::key.code==sf::Keyboard::Right)&& this->player->get_x()<=500){
+        if((e.Event::KeyPressed && e.Event::key.code==sf::Keyboard::Right)&& this->player->get_x()<=550){
             this->player->move_dir(1.f,0.f);
         }
     }
