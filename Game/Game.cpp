@@ -1,5 +1,5 @@
 #include "Game.h"
-
+#include <iostream>
 Game::Game(){
 
     this->initWindow();
@@ -46,10 +46,12 @@ void Game::events(){
         if(e.Event::type==sf::Event::Closed || (e.Event::KeyPressed && e.Event::key.code==sf::Keyboard::Escape)){
             this->mywin->close();
         }
-        if(e.Event::KeyPressed && e.Event::key.code==sf::Keyboard::Up){
+        if((e.Event::KeyPressed && e.Event::key.code==sf::Keyboard::Up) && this->player->get_y()>0){
             this->player->move_dir(0.f,-1.f);
         }
-        if(e.Event::KeyPressed && e.Event::key.code==sf::Keyboard::Down){
+        if((e.Event::KeyPressed && e.Event::key.code==sf::Keyboard::Down) && 
+            this->player->get_y() < 500){
+
             this->player->move_dir(0.f,1.f);
         }
         if(e.Event::KeyPressed && e.Event::key.code==sf::Keyboard::Left){
