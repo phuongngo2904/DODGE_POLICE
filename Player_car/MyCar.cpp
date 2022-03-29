@@ -1,5 +1,4 @@
 #include "MyCar.h"
-#include <filesystem>
 #include <string>  
 
 MyCar::MyCar(){
@@ -16,6 +15,7 @@ MyCar::MyCar(){
 }
 
 MyCar::~MyCar(){
+
 }
 
 void MyCar::set_center(){
@@ -56,7 +56,7 @@ void MyCar::initTexture(){
 
 void MyCar::initSprite(){
     this->sprite.setTexture(this->texture);
-    this->sprite.scale(0.15f,0.15f);
+    this->sprite.scale(0.12f,0.12f);
     this->set_center();
     
 }
