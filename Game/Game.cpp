@@ -34,26 +34,37 @@ void Game::initPlayer(){
 }
 void Game::update(){
     this->mywin->clear();
-    this->render();
+    this->events();
     this->mywin->draw(this->mywin_sprite);
     this->mywin->draw(this->player->get_player_sprite());
     this->mywin->display();
-
 }
 
-void Game::render(){
+void Game::events(){
     sf::Event e;
     while(this->mywin->pollEvent(e)){
         if(e.Event::type==sf::Event::Closed || (e.Event::KeyPressed && e.Event::key.code==sf::Keyboard::Escape)){
             this->mywin->close();
         }
+        if(e.Event::KeyPressed && e.Event::key.code==sf::Keyboard::Up){
+            this->player->move_dir(0.f,-1.f);
+        }
+        if(e.Event::KeyPressed && e.Event::key.code==sf::Keyboard::Down){
+            this->player->move_dir(0.f,1.f);
+        }
+        if(e.Event::KeyPressed && e.Event::key.code==sf::Keyboard::Left){
+            this->player->move_dir(-1.f,0.f);
+        }
+        if(e.Event::KeyPressed && e.Event::key.code==sf::Keyboard::Right){
+            this->player->move_dir(1.f,0.f);
+        }
     }
+
 }
 
 void Game::run(){
     
     while(this->mywin->isOpen()){
-        
         this->update();
     }
 }

@@ -9,8 +9,10 @@ class MyCar:public MyObject{
         void set_center();
         void initSprite();
         void initTexture();
+        void move_dir(const float x, const float y);
         sf::Sprite get_player_sprite();
     private:
         sf::Sprite player_sprite;
-        sf::Texture player_texture;   
+        sf::Texture player_texture;
+        float speed;   
 };

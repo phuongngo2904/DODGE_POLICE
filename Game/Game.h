@@ -10,7 +10,7 @@ class Game{
         virtual ~Game();
         void run();
         void update();
-        void render();
+        void events();
         void initWindow();
         void initPlayer();
         void initSprite();
