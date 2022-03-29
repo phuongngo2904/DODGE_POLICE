@@ -26,10 +26,7 @@ void MyCar::initSprite(){
 void MyCar::move_dir(const float x, const float y){
     this->sprite.move(x*this->speed,this->speed*y);
 }
-bool MyCar::check_bounds(){
-    if(this->get_y() >0 && this->get_x()>0) return true;
-    return false;
-}
+
 sf::Sprite MyCar::get_player_sprite(){
     return this->sprite;
 }

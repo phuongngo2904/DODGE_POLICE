@@ -46,18 +46,17 @@ void Game::events(){
         if(e.Event::type==sf::Event::Closed || (e.Event::KeyPressed && e.Event::key.code==sf::Keyboard::Escape)){
             this->mywin->close();
         }
-        if((e.Event::KeyPressed && e.Event::key.code==sf::Keyboard::Up) && this->player->get_y()>0){
+        if((e.Event::KeyPressed && e.Event::key.code==sf::Keyboard::Up) && this->player->get_y() >0){
             this->player->move_dir(0.f,-1.f);
         }
-        if((e.Event::KeyPressed && e.Event::key.code==sf::Keyboard::Down) && 
-            this->player->get_y() < 500){
-
+        if((e.Event::KeyPressed && e.Event::key.code==sf::Keyboard::Down) && this->player->get_y()<500){
             this->player->move_dir(0.f,1.f);
         }
-        if(e.Event::KeyPressed && e.Event::key.code==sf::Keyboard::Left){
+        if((e.Event::KeyPressed && e.Event::key.code==sf::Keyboard::Left)&& this->player->get_x()>=150){
+            
             this->player->move_dir(-1.f,0.f);
         }
-        if(e.Event::KeyPressed && e.Event::key.code==sf::Keyboard::Right){
+        if((e.Event::KeyPressed && e.Event::key.code==sf::Keyboard::Right)&& this->player->get_x()<=50){
             this->player->move_dir(1.f,0.f);
         }
     }
