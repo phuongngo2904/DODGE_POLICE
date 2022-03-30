@@ -4,7 +4,6 @@
 Game::Game(){
 
     this->initWindow();
-    this->PAUSE=false;
 }
 
 Game::~Game(){
@@ -73,35 +72,15 @@ void Game::update_enemy(){
 }
 
 void Game::update(){
-    if(!this->PAUSE){
-        this->mywin->clear();
-        this->events();
-        this->mywin->draw(this->mywin_sprite);
-        this->update_player();
-        this->update_enemy();
-        this->mywin->display();
-    }
-
-}
-void Game::pause_game(){
-    sf::Font font;
-    sf::Text text;
-    font.loadFromFile("./font/Rainshow.otf");
-    text.setFont(font);
-    text.setString("Press P to continue...");
-    text.setCharacterSize(35);
-    text.setFillColor(sf::Color::Black);
-    text.setPosition(200, VAR::HEIGHT/2);
-
-    while(this->PAUSE){
-        this->mywin->clear();
-        this->mywin->draw(this->mywin_sprite);
-        this->mywin->draw(text);
-        this->mywin->display();
-    }
-    this->update();
+    this->mywin->clear();
+    this->events();
+    this->mywin->draw(this->mywin_sprite);
+    this->update_player();
+    this->update_enemy();
     this->mywin->display();
+
 }
+
 void Game::events(){
 
     sf::Event e;
@@ -124,7 +103,16 @@ void Game::events(){
             this->player->move_dir(1.f,0.f);
         }
         if(e.Event::KeyPressed && e.Event::key.code==sf::Keyboard::P){
-            this->PAUSE=!this->PAUSE;
+            this->pause = new PauseGame();
+            while(true){
+                this->mywin->draw(this->pause->get_sprite());
+                this->mywin->draw(this->pause->get_text());
+                this->mywin->display();
+                if(this->pause->check_input(*this->mywin)){
+                    break;
+                }
+            }
+
         }
     }
 }
@@ -132,11 +120,8 @@ void Game::events(){
 void Game::run(){
     
     while(this->mywin->isOpen()){
-        if(!this->PAUSE){
-            this->update();
-        }
-        else{
-            this->pause_game();
-        }
+
+        this->update();
+
     }
 }

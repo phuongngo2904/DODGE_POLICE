@@ -4,6 +4,7 @@
 #include "../Player_car/MyCar.h"
 #include "../Enemy_cars/Object.h"
 #include "../Enemy_cars/Enemy.h"
+#include "../Game/PauseGame.h"
 #include <vector>
 
 class Game{
@@ -20,15 +21,14 @@ class Game{
         void initEnemy();
         void initSprite();
         void initTexture();
-        void pause_game();
     private:
-        bool PAUSE;
     	float Timer;
 	    float TimerMax;
         sf::Sprite mywin_sprite;
         sf::Texture mywin_texture;
         sf::RenderWindow* mywin;
         MyCar* player;
+        PauseGame* pause;
         std::vector<Enemy*> enemy;
         
 
