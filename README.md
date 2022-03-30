@@ -1,6 +1,8 @@
 # DODGE_POLICE
 # A fun game when users need to avoid multiple cars to earn as many score as possible
 
+![Demo](https://user-images.githubusercontent.com/74227710/160935105-010250ff-09fc-4dbe-8608-e53061d491a6.mov)
+
 # 1. Install brew on mac(or you can go to brew.sh to find the instruction)
 
 ### If you already installed brew, please ignore this step:
