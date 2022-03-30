@@ -1,14 +1,15 @@
 #include "Game.h"
+#include <iostream>
 
 Game::Game(){
 
     this->initWindow();
+    this->PAUSE=false;
 }
 
 Game::~Game(){
     delete this->mywin;
     delete this->player;
-    delete this->enemy;
 }
 
 void Game::initTexture(){
@@ -35,22 +36,74 @@ void Game::initPlayer(){
 }
 
 void Game::initEnemy(){
-    this->enemy = new Enemy();
+    	this->TimerMax = 80.f;
+	    this->Timer = this->TimerMax;
 }
 
-void Game::update(){
-    this->mywin->clear();
-    this->events();
-    this->mywin->draw(this->mywin_sprite);
+void Game::update_player(){
+    this->player->update_score_level_attemp();
     this->mywin->draw(this->player->get_player_sprite());
     this->mywin->draw(this->player->get_score());
     this->mywin->draw(this->player->get_level());
     this->mywin->draw(this->player->get_attemp());
-    this->mywin->draw(this->enemy->get_cars_sprite());
-    this->mywin->display();
 }
 
+void Game::update_enemy(){
+
+    this->Timer += 0.5f;
+    if(this->Timer >= this->TimerMax){
+        this->enemy.push_back(new Enemy());
+        this->Timer = 0.f;
+    }
+    int counter=0;
+    for(auto *e: this->enemy){
+        e->move();
+        this->mywin->draw(e->get_cars_sprite());
+        if(e->get_y()>VAR::HEIGHT){
+            delete this->enemy.at(counter);
+			this->enemy.erase(this->enemy.begin() + counter);
+            this->player->set_score(1);
+        }
+		else if (e->get_cars_sprite().getGlobalBounds().intersects(this->player->get_player_sprite().getGlobalBounds())){
+			this->player->set_attemp(1);
+            //std::cout<<"CRASH"<<std::endl;
+		}
+        counter++;
+    }
+}
+
+void Game::update(){
+    if(!this->PAUSE){
+        this->mywin->clear();
+        this->events();
+        this->mywin->draw(this->mywin_sprite);
+        this->update_player();
+        this->update_enemy();
+        this->mywin->display();
+    }
+
+}
+void Game::pause_game(){
+    sf::Font font;
+    sf::Text text;
+    font.loadFromFile("./font/Rainshow.otf");
+    text.setFont(font);
+    text.setString("Press P to continue...");
+    text.setCharacterSize(35);
+    text.setFillColor(sf::Color::Black);
+    text.setPosition(200, VAR::HEIGHT/2);
+
+    while(this->PAUSE){
+        this->mywin->clear();
+        this->mywin->draw(this->mywin_sprite);
+        this->mywin->draw(text);
+        this->mywin->display();
+    }
+    this->update();
+    this->mywin->display();
+}
 void Game::events(){
+
     sf::Event e;
     while(this->mywin->pollEvent(e)){
         
@@ -70,13 +123,20 @@ void Game::events(){
         if((e.Event::KeyPressed && e.Event::key.code==sf::Keyboard::Right)&& this->player->get_x()<=570){
             this->player->move_dir(1.f,0.f);
         }
+        if(e.Event::KeyPressed && e.Event::key.code==sf::Keyboard::P){
+            this->PAUSE=!this->PAUSE;
+        }
     }
-
 }
 
 void Game::run(){
     
     while(this->mywin->isOpen()){
-        this->update();
+        if(!this->PAUSE){
+            this->update();
+        }
+        else{
+            this->pause_game();
+        }
     }
 }

@@ -7,11 +7,15 @@ class MyCar: public MyObject, public CarInfo {
     public:
         MyCar();
         ~MyCar();
+        void set_score(int para) {this->myscore+=para;}
+        void set_level(int para) {this->mylevel+=para;}
+        void set_attemp(int para) {this->myattemp-=para;}
         void set_center();
         void initfont();
         void init_score();
         void init_level();
         void init_attemp();
+        void update_score_level_attemp();
         void initSprite() override;
         void initTexture() override;
         void move_dir(const float x, const float y);

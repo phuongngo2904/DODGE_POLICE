@@ -60,6 +60,13 @@ void MyCar::initSprite(){
     this->set_center();
     
 }
+
+void MyCar::update_score_level_attemp(){
+    this->score.setString("Score: " + std::to_string(this->myscore));
+    this->level.setString("Level: " + std::to_string(this->mylevel));
+    this->attemp.setString("Life: " + std::to_string(this->myattemp));
+}
+
 void MyCar::move_dir(const float x, const float y){
     this->sprite.move(x*this->speed,this->speed*y);
 }

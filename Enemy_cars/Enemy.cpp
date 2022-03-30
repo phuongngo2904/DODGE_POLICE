@@ -1,17 +1,15 @@
 #include "Enemy.h"
-Enemy::Enemy(){
+#include <stdio.h>
 
-    this->this_type = 3;
+Enemy::Enemy(){
+    this->speed = VAR::ENEMY_SPEED/2;
+    this->this_type = 0 + rand() % 4;
+    this->cool_down=0;
 
     this->enmap[0]="./images/car_1.png";
     this->enmap[1]="./images/car_2.png";
     this->enmap[2]="./images/car_3.png";
     this->enmap[3]="./images/police.png";
-
-    this->pos[0]=(VAR::POS_1);
-    this->pos[1]=(VAR::POS_2);
-    this->pos[2]=(VAR::POS_3);
-    this->pos[3]=(VAR::POS_4);
     
     this->initTexture();
     this->initSprite();
@@ -32,12 +30,20 @@ void Enemy::initSprite(){
     this->sprite.scale(0.15f,0.15f);
     this->set_position();
 }
-void Enemy::move(){
 
+void Enemy::move(){
+    this->sprite.setPosition(this->get_x(),this->get_y()+this->speed);
 }
 
 void Enemy::set_position(){
-    this->sprite.setPosition(sf::Vector2f(this->pos[this->this_type],100));
+    this->this_type = 0 + rand() % 4;
+
+    this->pos[0]=(VAR::POS_1);
+    this->pos[1]=(VAR::POS_2);
+    this->pos[2]=(VAR::POS_3);
+    this->pos[3]=(VAR::POS_4);
+
+    this->sprite.setPosition(sf::Vector2f(this->pos[this->this_type],(-100+rand() % 100)));
 }
 
 sf::Sprite Enemy::get_cars_sprite(){

@@ -17,6 +17,7 @@ class Enemy : public MyObject {
         sf::Sprite get_cars_sprite();
     private:
         float speed;
+        int cool_down;
         int this_type;
         std::string enmap[SIZE];
         int pos[SIZE];
