@@ -2,9 +2,9 @@
 #include <iostream>
 
 MyCar::MyCar(){
-    this->myscore=0;
-    this->mylevel=1;
-    this->myattemp=5;
+    this->myscore=VAR::SCORE;
+    this->mylevel=VAR::LEVEL;
+    this->myattemp=VAR::PLAYER_LIFE;
     this->initfont();
     this->init_score();
     this->init_level();

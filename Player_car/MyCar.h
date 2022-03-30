@@ -10,6 +10,12 @@ class MyCar: public MyObject, public CarInfo {
         void set_score(int para) {this->myscore+=para;}
         void set_level(int para) {this->mylevel+=para;}
         void set_attemp(int para) {this->myattemp-=para;}
+        void reset_attemp(int para) {this->myattemp=para;}
+        void reset_score(int para) {this->myscore=para;}
+        void reset_level(int para) {this->mylevel=para;}
+        int  get_current_attemp() {return this->myattemp;}
+        int  get_current_score() {return this->myscore;}
+        int  get_current_level() {return this->mylevel;}
         void set_center();
         void initfont();
         void init_score();

@@ -1,11 +1,12 @@
 #pragma once
 enum VAR: int {
-    PLAYER=0,
-    CARS=1,
-    GAS_TANK=2,
+    LEVEL_UP=10,
+    SCORE=0,
+    LEVEL=0,
+    PLAYER_LIFE=5,
     FPS=140,
     PLAYER_SPEED=15,
-    ENEMY_SPEED=1,
+    ENEMY_SPEED=2,
     NUMBER_ENEMY=10,
     COOL_DOWN=30,
     POS_X_CENTER=330,

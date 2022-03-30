@@ -5,6 +5,7 @@
 #include "../Enemy_cars/Object.h"
 #include "../Enemy_cars/Enemy.h"
 #include "../Game/PauseGame.h"
+#include "../Game/GameOver.h"
 #include <vector>
 
 class Game{
@@ -21,16 +22,20 @@ class Game{
         void initEnemy();
         void initSprite();
         void initTexture();
+        void reset_game();
         void pause_game();
         void car_crash();
+        void game_over();
     private:
         bool PAUSE;
         bool LOST;
+        bool GAME_OVER;
     	float Timer;
 	    float TimerMax;
         sf::Sprite mywin_sprite;
         sf::Texture mywin_texture;
         sf::RenderWindow* mywin;
+        GameOver* go;
         MyCar* player;
         PauseGame* pause;
         std::vector<Enemy*> enemy;

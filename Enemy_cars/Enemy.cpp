@@ -2,10 +2,8 @@
 #include <stdio.h>
 
 Enemy::Enemy(){
-    this->speed = VAR::ENEMY_SPEED/2;
     this->this_type = 0 + rand() % 4;
-    this->cool_down=0;
-
+    this->speed=VAR::ENEMY_SPEED;
     this->enmap[0]="./images/car_1.png";
     this->enmap[1]="./images/car_2.png";
     this->enmap[2]="./images/car_3.png";
@@ -13,12 +11,10 @@ Enemy::Enemy(){
     
     this->initTexture();
     this->initSprite();
-    this->speed = VAR::ENEMY_SPEED;
     
 }
 
 Enemy::~Enemy(){
-
 }
 
 void Enemy::initTexture(){
