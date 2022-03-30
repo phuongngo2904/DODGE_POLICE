@@ -30,7 +30,7 @@ void MyCar::init_score(){
     this->score.setFont(font);
     this->score.setString("Score: " + std::to_string(this->myscore));
     this->score.setCharacterSize(25);
-    this->score.setFillColor(sf::Color::Black);
+    this->score.setFillColor(sf::Color::Yellow);
     this->score.setPosition(0, 55);
 }
 
@@ -38,7 +38,7 @@ void MyCar::init_level(){
     this->level.setFont(font);
     this->level.setString("Level: " + std::to_string(this->mylevel));
     this->level.setCharacterSize(25);
-    this->level.setFillColor(sf::Color::Black);
+    this->level.setFillColor(sf::Color::Yellow);
     this->level.setPosition(0, 95);
 }
 
@@ -46,7 +46,7 @@ void MyCar::init_attemp(){
     this->attemp.setFont(font);
     this->attemp.setString("Life: " + std::to_string(this->myattemp));
     this->attemp.setCharacterSize(25);
-    this->attemp.setFillColor(sf::Color::Black);
+    this->attemp.setFillColor(sf::Color::Yellow);
     this->attemp.setPosition(0, 135);
 }
 

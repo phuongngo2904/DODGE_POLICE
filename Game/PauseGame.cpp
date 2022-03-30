@@ -5,7 +5,7 @@ PauseGame::PauseGame(){
     this->text.setFont(this->font);
     this->text.setString("Press S to continue...");
     this->text.setCharacterSize(35);
-    this->text.setFillColor(sf::Color::Magenta);
+    this->text.setFillColor(sf::Color::Cyan);
     this->text.setPosition(200, VAR::HEIGHT/2);
     this->initTexture();
     this->initSprite();
