@@ -2,7 +2,7 @@
 #include <iostream>
 
 Game::Game(){
-
+    this->PAUSE=false;
     this->initWindow();
 }
 
@@ -103,25 +103,31 @@ void Game::events(){
             this->player->move_dir(1.f,0.f);
         }
         if(e.Event::KeyPressed && e.Event::key.code==sf::Keyboard::P){
+            this->PAUSE=true;
             this->pause = new PauseGame();
-            while(true){
-                this->mywin->draw(this->pause->get_sprite());
-                this->mywin->draw(this->pause->get_text());
-                this->mywin->display();
-                if(this->pause->check_input(*this->mywin)){
-                    break;
-                }
-            }
-
         }
     }
 }
 
+void Game::pause_game(){
+    sf::Event e;
+    while(this->mywin->pollEvent(e)){
+        if(e.Event::KeyPressed && e.Event::key.code==sf::Keyboard::S){
+            this->PAUSE=false;
+        }
+
+    }
+    this->mywin->draw(this->pause->get_sprite());
+    this->mywin->draw(this->pause->get_text());
+    this->mywin->display();
+}
 void Game::run(){
-    
+
     while(this->mywin->isOpen()){
-
-        this->update();
-
+        if(this->PAUSE){
+            this->pause_game();
+            continue;
+        }
+        else this->update();
     }
 }

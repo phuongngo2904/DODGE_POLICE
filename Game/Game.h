@@ -21,7 +21,9 @@ class Game{
         void initEnemy();
         void initSprite();
         void initTexture();
+        void pause_game();
     private:
+        bool PAUSE;
     	float Timer;
 	    float TimerMax;
         sf::Sprite mywin_sprite;

@@ -3,14 +3,16 @@
 PauseGame::PauseGame(){
     this->font.loadFromFile("./font/Rainshow.otf");
     this->text.setFont(this->font);
-    this->text.setString("Press P to continue...");
+    this->text.setString("Press S to continue...");
     this->text.setCharacterSize(35);
-    this->text.setFillColor(sf::Color::Black);
+    this->text.setFillColor(sf::Color::Magenta);
     this->text.setPosition(200, VAR::HEIGHT/2);
     this->initTexture();
     this->initSprite();
 }
-PauseGame::~PauseGame(){}
+PauseGame::~PauseGame(){
+    delete this;
+}
 
 void PauseGame::initTexture(){
     this->texture.loadFromFile("./images/background.png");
