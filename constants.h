@@ -4,7 +4,7 @@ enum VAR: int {
     CARS=1,
     GAS_TANK=2,
     FPS=140,
-    PLAYER_SPEED=20,
+    PLAYER_SPEED=15,
     ENEMY_SPEED=1,
     NUMBER_ENEMY=10,
     COOL_DOWN=30,

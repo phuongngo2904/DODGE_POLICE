@@ -18,6 +18,7 @@ class MyCar: public MyObject, public CarInfo {
         void update_score_level_attemp();
         void initSprite() override;
         void initTexture() override;
+        bool collide(sf::Sprite enemy);
         void move_dir(const float x, const float y);
         sf::Sprite get_player_sprite();
     private:

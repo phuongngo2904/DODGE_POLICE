@@ -3,6 +3,7 @@
 
 Game::Game(){
     this->PAUSE=false;
+    this->LOST=false;
     this->initWindow();
 }
 
@@ -63,9 +64,8 @@ void Game::update_enemy(){
 			this->enemy.erase(this->enemy.begin() + counter);
             this->player->set_score(1);
         }
-		else if (e->get_cars_sprite().getGlobalBounds().intersects(this->player->get_player_sprite().getGlobalBounds())){
-			this->player->set_attemp(1);
-            //std::cout<<"CRASH"<<std::endl;
+		else if (this->player->collide(e->get_cars_sprite())){
+            this->LOST=true;
 		}
         counter++;
     }
@@ -121,13 +121,27 @@ void Game::pause_game(){
     this->mywin->draw(this->pause->get_text());
     this->mywin->display();
 }
+
+void Game::car_crash(){
+    this->LOST=false;
+    this->enemy.clear();
+    sf::sleep(sf::seconds(2));
+    this->player->set_attemp(1);
+    this->player->set_center();
+}
 void Game::run(){
 
     while(this->mywin->isOpen()){
+        if(this->LOST){
+            this->car_crash();
+            continue;
+        }
+
         if(this->PAUSE){
             this->pause_game();
             continue;
         }
+
         else this->update();
     }
 }

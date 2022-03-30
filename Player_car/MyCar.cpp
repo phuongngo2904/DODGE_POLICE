@@ -1,5 +1,5 @@
-#include "MyCar.h"
-#include <string>  
+#include "MyCar.h" 
+#include <iostream>
 
 MyCar::MyCar(){
     this->myscore=0;
@@ -15,7 +15,7 @@ MyCar::MyCar(){
 }
 
 MyCar::~MyCar(){
-
+    delete this;
 }
 
 void MyCar::set_center(){
@@ -73,4 +73,18 @@ void MyCar::move_dir(const float x, const float y){
 
 sf::Sprite MyCar::get_player_sprite(){
     return this->sprite;
+}
+
+bool MyCar::collide(sf::Sprite enemy){
+    //std::cout<<enemy.getPosition().x <<"--"<<this->sprite.getPosition().x <<std::endl; // DEBUG
+    if( (enemy.getPosition().y + 70 >= this->sprite.getPosition().y) && 
+        (enemy.getPosition().x+40 >= this->sprite.getPosition().x) &&
+        (enemy.getPosition().x-30 <= this->sprite.getPosition().x) &&
+        (enemy.getPosition().y -50 <= this->sprite.getPosition().y)
+        )
+    {
+        return true;
+    }
+    return false;
+
 }

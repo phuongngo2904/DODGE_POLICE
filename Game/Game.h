@@ -22,8 +22,10 @@ class Game{
         void initSprite();
         void initTexture();
         void pause_game();
+        void car_crash();
     private:
         bool PAUSE;
+        bool LOST;
     	float Timer;
 	    float TimerMax;
         sf::Sprite mywin_sprite;
