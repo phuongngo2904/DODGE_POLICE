@@ -42,8 +42,8 @@ void Game::initPlayer(){
 }
 
 void Game::initEnemy(){
-    	this->TimerMax = 80.f;
-	    this->Timer = this->TimerMax;
+    this->TimerMax = 80.f;
+    this->Timer = this->TimerMax;
 }
 
 void Game::update_player(){
