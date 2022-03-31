@@ -33,6 +33,8 @@ int main(){
         }
         main_win->display();
     }
+    delete main_win;
+    delete wc;
     if(start_game){
         Game game;
         game.run();

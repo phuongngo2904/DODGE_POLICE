@@ -9,9 +9,9 @@ Game::Game(){
 
 Game::~Game(){
     delete this->mywin;
-    delete this->player;
-    delete this->pause;
-    delete this->go;
+    // delete this->player;
+    // delete this->pause;
+    // delete this->go;
     for (auto *i : this->enemy)
 	{
 		delete i;
@@ -65,6 +65,11 @@ void Game::update_enemy(){
     for(auto *e: this->enemy){
         e->move();
         this->mywin->draw(e->get_cars_sprite());
+
+        if (this->player->collide(e->get_cars_sprite())){
+            this->LOST=true;
+		}
+
         if(e->get_y()>VAR::HEIGHT){
             if(this->player->get_current_score()%VAR::LEVEL_UP==0){
                 this->player->set_level(1);
@@ -74,9 +79,7 @@ void Game::update_enemy(){
 			this->enemy.erase(this->enemy.begin() + counter);
             this->player->set_score(1);
         }
-		else if (this->player->collide(e->get_cars_sprite())){
-            this->LOST=true;
-		}
+
         counter++;
     }
 }

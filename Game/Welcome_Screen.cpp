@@ -8,7 +8,6 @@ WelcomeWindow::WelcomeWindow(){
 }
 
 WelcomeWindow::~WelcomeWindow(){
-    delete this;
 }
 
 void WelcomeWindow::initTexture(){
